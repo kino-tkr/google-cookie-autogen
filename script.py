@@ -1,4 +1,4 @@
-from playwright.sync_api import sync_playwright
+from DrissionPage import ChromiumPage, ChromiumOptions
 from pyvirtualdisplay import Display
 import json
 import time
@@ -8,21 +8,23 @@ def main():
     display = Display(visible=0, size=(1920, 1080))
     display.start()
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        context = browser.new_context()
-        page = context.new_page()
+    options = ChromiumOptions()
+    options.set_argument('--no-sandbox')
+    options.set_argument('--disable-dev-shm-usage')
+    #options.set_argument('--disable-blink-features=AutomationControlled')
+    options.headless(False)
 
-        page.goto('https://www.google.com/search?q=a')
-        time.sleep(5)  # ページ読み込みを待つ
+    page = ChromiumPage(options)
+    page.get('https://www.google.com/search?q=a')
+    time.sleep(3)
 
-        cookies = context.cookies()
-        with open('cookies.json', 'w') as f:
-            json.dump(cookies, f, indent=2)
+    cookies = page.cookies()
+    with open('cookies.json', 'w') as f:
+        json.dump(cookies, f, indent=2)
+    page.screenshot('screenshot.png')
 
-        print("Cookies saved to cookies.json")
-        browser.close()
-
+    print("Cookies saved to cookies.json")
+    page.quit()
     display.stop()
 
 if __name__ == "__main__":
