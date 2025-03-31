@@ -1,0 +1,22 @@
+[
+  {
+    "name": "AEC",
+    "value": "AVcja2ce5xoJJ-PBak5t0r0RvL6-4qOIv_0WcfsW35vtLb1x5OzrnMboFg",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1758976486.457711,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "NID",
+    "value": "522=uRXtCQ3xFOEJzULenW91k0YSRukXQS5N2D5M9eCAR4xsCx7Jspew4w56jWIchfh-NjPgAuG4Mt2-ST2PTlC0xwbp7yBps5LFwKisQ92mPAc9wuMCT-sX2KoFeZDQOKoqNbSw7yjeZWZmL4iUt6wF0fuL9Tqqi_ljuzWd2TJxzFmTcwXBKUdYuPmU39anP1Z6n5Igx9ZVKLIwRj_-ldWw4rDGQDUOoD6J0W0DQ5O7rN7BFYa2",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1759235686.932705,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]
