@@ -21,7 +21,7 @@ def main():
     cookies = page.cookies()
     with open('cookies.json', 'w') as f:
         json.dump(cookies, f, indent=2)
-    page.get_screenshot(path='screenshot.jpg', full_page=True)
+    page.get_screenshot(path='screenshot.png', full_page=True)
 
     print("Cookies saved to cookies.json")
     page.quit()
