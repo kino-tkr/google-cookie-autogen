@@ -1,22 +1,22 @@
 [
   {
     "name": "AEC",
-    "value": "AVcja2ce5xoJJ-PBak5t0r0RvL6-4qOIv_0WcfsW35vtLb1x5OzrnMboFg",
+    "value": "AVcja2fCapmCkURI25t0uRQgIJOxDBSxC2OXaKzdVbfVQ7RwUoXY-ehmpg",
     "domain": ".google.com",
     "path": "/",
-    "expires": 1758976486.457711,
+    "expires": 1758976641.449629,
     "httpOnly": true,
     "secure": true,
     "sameSite": "Lax"
   },
   {
     "name": "NID",
-    "value": "522=uRXtCQ3xFOEJzULenW91k0YSRukXQS5N2D5M9eCAR4xsCx7Jspew4w56jWIchfh-NjPgAuG4Mt2-ST2PTlC0xwbp7yBps5LFwKisQ92mPAc9wuMCT-sX2KoFeZDQOKoqNbSw7yjeZWZmL4iUt6wF0fuL9Tqqi_ljuzWd2TJxzFmTcwXBKUdYuPmU39anP1Z6n5Igx9ZVKLIwRj_-ldWw4rDGQDUOoD6J0W0DQ5O7rN7BFYa2",
+    "value": "522=hXxSAHESdeL6UmHfUIfV4NvauCQrx7swbViC_adsaMaXnvgWxrw0tHruOGXTnDABtUUzovjIvA4kr4oZPf4iom9udMUBPigOMR69QOJ1zfcsVVr3fsO024BTGoaDen9foyx98CWufeIzKSMW5zjFOWB0I8F5Nc8ZB4srlzHQlbIkknKqWvyqioheufb8fsGHVYHKMExvaWgQLjryHWap3_siuYN29YSrPcbV6sbvdeEONztMkB82WtkL",
     "domain": ".google.com",
     "path": "/",
-    "expires": 1759235686.932705,
+    "expires": 1759235841.792,
     "httpOnly": true,
-    "secure": false,
-    "sameSite": "Lax"
+    "secure": true,
+    "sameSite": "None"
   }
 ]
