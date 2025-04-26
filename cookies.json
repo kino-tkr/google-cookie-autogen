@@ -1,37 +1,12 @@
 [
   {
-    "name": "__Secure-ROLLOUT_TOKEN",
-    "value": "CIfnt_fNhaHaUhCWxYvHm_SMAxjyuY_Hm_SMAw%3D%3D",
-    "domain": ".youtube.com"
-  },
-  {
-    "name": "VISITOR_PRIVACY_METADATA",
-    "value": "CgJVUxIEGgAgFw%3D%3D",
-    "domain": ".youtube.com"
-  },
-  {
-    "name": "VISITOR_INFO1_LIVE",
-    "value": "SCaoiGD0qzs",
-    "domain": ".youtube.com"
-  },
-  {
-    "name": "YSC",
-    "value": "EkRDsp_GayU",
-    "domain": ".youtube.com"
+    "name": "NID",
+    "value": "523=agu1Yk-JqdTLSUZYyO5USlXMuPHIX71mnKvM0Saa38Gbis_bJHREZKTd4CG9R90Jp1YKiIwyWK-RvwiI8VcE_XE1Pgq1xrLf9ZQ3pH3MhKCgVrkRwB5q1XeAW-rjaCweRQQhcz3TN0ndFW-ciWRFQ3eRL-L4HWjfhgg2h4SXbWEZexYmlyGE0n71-hvWv6R9UgW8CwGri0zOHTO9nJPSV2pOLUmoTi2aYe3fjXUTku4Gbbth",
+    "domain": ".google.com"
   },
   {
     "name": "AEC",
-    "value": "AVcja2dOZ4bjP6BA3k0hJweu9lVSMs0_BhxBTDBzARlk6aNGxfKRI1BW0w",
+    "value": "AVcja2fBfphPi8SS9gxDww6HLTLqHf1OvQnIytyF4ryS6rMpSWkguv-yWKA",
     "domain": ".google.com"
-  },
-  {
-    "name": "NID",
-    "value": "523=h9RkzcgBw_1drdrCRcccMrNj0raHwSYodaSBOw0e0znoh5tHSe4_1C4S9tLfZRR50HXdhKHmDRUC2POy-9B1dBHA3JkIXWwU-9hWLIRz83Lx7x6A1RS57nlKYU8LjL9uQNDZjBUAZGt_DS_iUI9iFGyfdLGv3PblhvOPzJ2lTS9SFSq0U0LUZUY7i6u6jY1qc5hHkw2L_1ZA-xDFaMHYfIIi3LsRDLWJsqC5vqzgIOD_NKmMeeLvjrWVVXo",
-    "domain": ".google.com"
-  },
-  {
-    "name": "DV",
-    "value": "o6bRTk9t8RcVEM4dSZxmxywKjIbwZhk",
-    "domain": "www.google.com"
   }
 ]
