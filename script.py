@@ -19,6 +19,7 @@ def main():
 
     try:
         page.ele("#captcha-form", timeout=1)
+        print("captcha detected")
     except:
         cookies = page.cookies()
         with open('cookies.json', 'w') as f:
