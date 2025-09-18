@@ -4,7 +4,6 @@ import json
 import time
 
 def main():
-    # 仮想ディスプレイを起動
     display = Display(visible=0, size=(1920, 1080))
     display.start()
 
@@ -17,6 +16,7 @@ def main():
     page = ChromiumPage(options)
     page.get('https://www.google.com/search?q=a')
     time.sleep(3)
+
     try:
         page.ele("#captcha-form", timeout=1)
     except:
@@ -24,6 +24,7 @@ def main():
         with open('cookies.json', 'w') as f:
             json.dump(cookies, f, indent=2)
         print("Cookies saved to cookies.json")
+
     page.get_screenshot(path='screenshot.png', full_page=True)
     page.quit()
     display.stop()
