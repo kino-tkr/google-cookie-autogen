@@ -1,7 +1,8 @@
-name: per 12 hour
+name: task
+
 on:
   schedule:
-    - cron: "0 0,12 * * *"
+    - cron: "0 0 */3 * *"
   workflow_dispatch:
   push:
     branches:
