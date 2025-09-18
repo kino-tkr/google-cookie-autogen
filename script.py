@@ -17,10 +17,16 @@ def main():
     page.get('https://www.google.com/search?q=a')
     time.sleep(3)
 
+    captcha = False
     try:
         page.ele("#captcha-form", timeout=1)
-        print("captcha detected")
+        captcha = True
     except:
+        pass
+
+    if captcha:
+        raise Exception("captcha detected")
+    else:
         cookies = page.cookies()
         with open('cookies.json', 'w') as f:
             json.dump(cookies, f, indent=2)
