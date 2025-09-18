@@ -15,7 +15,7 @@ def main():
 
     page = ChromiumPage(options)
     page.get('https://www.google.com/search?q=a')
-    time.sleep(4)
+    time.sleep(5)
 
     captcha = False
     try:
