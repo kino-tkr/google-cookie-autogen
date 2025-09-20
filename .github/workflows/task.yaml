@@ -25,10 +25,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xvfb chromium-browser tinyproxy-bin
           pip install DrissionPage pyvirtualdisplay requests
+          sudo mkdir /etc/tinyproxy
+          python3 randomproxy.py ${{ secrets.PROXY }}
+          sudo mv tinyproxy.conf /etc/tinyproxy
 
       - name: Run Python script to get cookies
         run: |
-          sudo python3 script.py ${{ secrets.PROXY }}
+          python3 script.py
 
       - name: Commit and Push Cookie
         run: |
