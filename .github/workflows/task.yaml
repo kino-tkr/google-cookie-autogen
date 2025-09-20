@@ -28,6 +28,7 @@ jobs:
           sudo mkdir /etc/tinyproxy
           python3 randomproxy.py ${{ secrets.PROXY }}
           sudo mv tinyproxy.conf /etc/tinyproxy
+          tinyproxy
 
       - name: Run Python script to get cookies
         run: |
