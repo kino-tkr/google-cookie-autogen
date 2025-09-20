@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb chromium-browser tinyproxy-bin
-          pip install DrissionPage pyvirtualdisplay
+          pip install DrissionPage pyvirtualdisplay requests
 
       - name: Run Python script to get cookies
         run: |
