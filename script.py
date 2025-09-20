@@ -16,11 +16,6 @@ Upstream http {}
 LogLevel Info"""
 
 def random_proxy(proxy):
-    try:
-        os.mkdir("/etc/tinyproxy")
-    except:
-        traceback.print_exc()
-        pass
     proxy = proxy.replace(":1080", f":{random.randint(1080, 1380)}")
     open("/etc/tinyproxy/tinyproxy.conf", "w", encoding="utf_8").write(tinyproxy_template.format(proxy))
     os.system("tinyproxy")
