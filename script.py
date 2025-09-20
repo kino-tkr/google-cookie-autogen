@@ -20,7 +20,7 @@ def random_proxy(proxy):
     except:
         pass
     proxy = proxy.replace(":1080", f":{random.randint(1080, 1380)}")
-    open("/etc/tinyproxy/tinyproxy.conf", "w", encoding="utf_8").write(tinyproxy_template.format(proxy)
+    open("/etc/tinyproxy/tinyproxy.conf", "w", encoding="utf_8").write(tinyproxy_template.format(proxy))
     os.system("tinyproxy")
 
 def main():
