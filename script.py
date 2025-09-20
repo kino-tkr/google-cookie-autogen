@@ -27,7 +27,9 @@ def main():
 
     captcha = False
     try:
-        page.ele("#captcha-form", timeout=1)
+        ele = page.ele("#captcha-form", timeout=1)
+        if type(ele) == DrissionPage._elements.none_element.NoneElement:
+            raise Exception("no captcha")
         captcha = True
     except:
         pass
