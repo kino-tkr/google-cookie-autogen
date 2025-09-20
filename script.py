@@ -1,4 +1,6 @@
 from DrissionPage import ChromiumPage, ChromiumOptions
+from DrissionPage._elements.none_element import NoneElement
+from DrissionPage._elements.chromium_element import ChromiumElement
 from pyvirtualdisplay import Display
 import json
 import time
@@ -15,7 +17,7 @@ def main():
     options.set_argument('--disable-dev-shm-usage')
     try:
         print("proxy", requests.get("https://api.ipify.org", proxies={"http": "http://localhost:8888", "https": "http://localhost:8888"}, timeout=3).text)
-        options.set_argument('--proxy-server="http://localhost:8888"')
+        options.set_argument('--proxy-server=http://localhost:8888')
     except:
         print("proxyless", requests.get("https://api.ipify.org").text)
     #options.set_argument('--disable-blink-features=AutomationControlled')
@@ -26,13 +28,11 @@ def main():
     time.sleep(5)
 
     captcha = False
-    try:
-        ele = page.ele("#captcha-form", timeout=1)
-        if type(ele) == DrissionPage._elements.none_element.NoneElement:
-            raise Exception("no captcha")
+    ele = page.ele("#captcha-form", timeout=1)
+    if isinstance(ele, ChromiumElement):
         captcha = True
-    except:
-        pass
+    if isinstance(ele, NoneElement):
+        captcha = False
 
     if captcha:
         raise Exception("captcha detected")
