@@ -53,10 +53,10 @@ def solve_captcha(sitekey, s, cookies):
             },
             "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
             "proxyType": "http",
-            "proxyAddress": "linode.voids.top",
-            "proxyPort": 1080,
-            "proxyLogin": "bruteforce",
-            "proxyPassword": "sineyo",
+            "proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
+            "proxyPort": proxy.split("://")[1].split("@")[1].split(":")[1],
+            "proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
+            "proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
             "cookies": cookies
         }
     }).json()
