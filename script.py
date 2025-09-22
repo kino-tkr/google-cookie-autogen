@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.parse
 import time
+import random
 import json
 import traceback
 import os
@@ -158,7 +159,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        proxy = sys.argv[1]
+        proxy = sys.argv[1].replace(":1080", f":{random.randint(1080, 1380)}")
     except:
         proxy = None
     try:
