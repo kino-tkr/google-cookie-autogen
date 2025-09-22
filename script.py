@@ -53,11 +53,11 @@ def solve_captcha_attempt(sitekey, s, cookies):
                 "s": s
             },
             "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            #"proxyType": "http",
-            #"proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
-            #"proxyPort": proxy.split("://")[1].split("@")[1].split(":")[1],
-            #"proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
-            #"proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
+            "proxyType": "http",
+            "proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
+            "proxyPort": random.randint(1080, 1380),
+            "proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
+            "proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
             "cookies": cookies
         }
     }).json()
@@ -154,7 +154,7 @@ def main():
         raise Exception("Failed to solve knitsail")
     else:
         print("possible done")
-        open("cookies.json", "w", encoding="utf_8").write(json.dumps(session.cookies.get_dict(), ensure_ascii=False))
+        open("cookies.json", "w", encoding="utf_8").write([{"name": name, "value": value} for name, value in session.cookies.get_dict().items()])
         open("result.html", "w", encoding="utf_8").write(result.text)
 
 if __name__ == "__main__":
