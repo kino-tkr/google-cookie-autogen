@@ -39,7 +39,7 @@ def run_script(knitsail, script):
     
     return result
 
-def solve_captcha(sitekey, s, cookies):
+def solve_captcha_attempt(sitekey, s, cookies):
     if not apikey:
         raise Exception("API key is required")
     task = requests.post("https://api.capmonster.cloud/createTask", json={
@@ -52,11 +52,11 @@ def solve_captcha(sitekey, s, cookies):
                 "s": s
             },
             "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "proxyType": "http",
-            "proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
-            "proxyPort": proxy.split("://")[1].split("@")[1].split(":")[1],
-            "proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
-            "proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
+            #"proxyType": "http",
+            #"proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
+            #"proxyPort": proxy.split("://")[1].split("@")[1].split(":")[1],
+            #"proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
+            #"proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
             "cookies": cookies
         }
     }).json()
@@ -74,6 +74,15 @@ def solve_captcha(sitekey, s, cookies):
             raise Exception(result.get("errorDescription"))
         time.sleep(1)
     raise Exception("Timeout")
+
+def solve_captcha(sitekey, s, cookies):
+    for _ in range(5):
+        try:
+            return solve_captcha_attempt(sitekey, s, cookies)
+        except:
+            traceback.print_exc()
+            pass
+    raise Exception("Failed to solve captcha after 5 attempts")
 
 def sg_ss(knitsail, p, q):
     script = """
