@@ -23,16 +23,12 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb chromium-browser tinyproxy-bin
-          pip install DrissionPage pyvirtualdisplay requests
-          sudo mkdir /etc/tinyproxy
-          python3 randomproxy.py ${{ secrets.PROXY }}
-          sudo mv tinyproxy.conf /etc/tinyproxy
-          tinyproxy
+          sudo apt-get install -y xvfb chromium-browser
+          pip install DrissionPage pyvirtualdisplay requests bs4
 
       - name: Run Python script to get cookies
         run: |
-          python3 script.py
+          python3 script.py ${{ secrets.PROXY }} ${{ secrets.APIKEY }}
 
       - name: Commit and Push Cookie
         run: |
