@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.parse
 import time
-import random
 import json
 import traceback
 import os
@@ -29,7 +28,7 @@ def run_script(knitsail, script):
     options.headless(False)
 
     page = ChromiumPage(options)
-    page.set.user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36")
+    page.set.user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36")
     page.get('https://www.google.com/')
 
     page.run_js(knitsail)
@@ -43,29 +42,22 @@ def run_script(knitsail, script):
 def solve_captcha_attempt(sitekey, s, cookies):
     if not apikey:
         raise Exception("API key is required")
-    task = requests.post("https://api.capmonster.cloud/createTask", json={
+    task = requests.post("https://api.capsolver.com/createTask", json={
         "clientKey": apikey,
         "task": {
-            "type": "RecaptchaV2EnterpriseTask",
+            "type": "ReCaptchaV2EnterpriseTaskProxyLess",
             "websiteURL": "https://www.google.com/sorry/index",
             "websiteKey": sitekey,
             "enterprisePayload": {
                 "s": s
             },
-            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "proxyType": "http",
-            "proxyAddress": proxy.split("://")[1].split("@")[1].split(":")[0],
-            "proxyPort": random.randint(1080, 1380),
-            "proxyLogin": proxy.split("://")[1].split("@")[0].split(":")[0],
-            "proxyPassword": proxy.split("://")[1].split("@")[0].split(":")[1],
-            "cookies": cookies
         }
     }).json()
     task_id = task.get("taskId")
     if not task_id:
         raise Exception(task.get("errorDescription"))
     for _ in range(60):
-        result = requests.get(f"https://api.capmonster.cloud/getTaskResult", json={
+        result = requests.post(f"https://api.capsolver.com/getTaskResult", json={
             "clientKey": apikey,
             "taskId": task_id
         }).json()
@@ -125,11 +117,11 @@ def main():
         #'cache-control': 'no-cache',
         'pragma': 'no-cache',
         'referer': 'https://www.google.com/',
-        'sec-ch-ua': '"Chromium";v="137", "Not:A-Brand";v="24", "Google Chrome";v="137"',
+        'sec-ch-ua': '"Chromium";v="139", "Not:A-Brand";v="24", "Google Chrome";v="139"',
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
     }
     session.proxies = {
         "http": proxy,
@@ -154,7 +146,7 @@ def main():
         raise Exception("Failed to solve knitsail")
     else:
         print("possible done")
-        open("cookies.json", "w", encoding="utf_8").write([{"name": name, "value": value} for name, value in session.cookies.get_dict().items()])
+        open("cookies.json", "w", encoding="utf_8").write(json.dumps([{"name": name, "value": value} for name, value in session.cookies.get_dict().items()]))
         open("result.html", "w", encoding="utf_8").write(result.text)
 
 if __name__ == "__main__":
