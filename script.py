@@ -127,27 +127,28 @@ def main():
         "http": proxy,
         "https": proxy
     }
-    response = session.get(f"https://www.google.com/search", params={"q": QUERY})
-    soup = BeautifulSoup(response.text, "html.parser")
-    knitsail = soup.find_all("script")[2].get_text()
-    p = response.text.split("var p='")[1].split("'")[0]
-    eid = response.text.split("var eid='")[1].split("'")[0]
-    session.cookies.update({"SG_SS": sg_ss(knitsail, p, QUERY)})
-    result = session.get(f"https://www.google.com/search", params={"q": QUERY, "sei": eid}, headers={"referer": f"https://www.google.com/search?q={QUERY}"})
-    while "captcha-form" in result.text:
-        soup = BeautifulSoup(result.text, "html.parser")
-        payload = {
-            "g-recaptcha-response": solve_captcha(soup.find("div", {"id": "recaptcha"}).get("data-sitekey"), soup.find("div", {"id": "recaptcha"}).get("data-s"), "; ".join([f"{name}={value}" for name, value in session.cookies.get_dict().items()])),
-            "q": soup.find("input", {"name": "q"}).get("value"),
-            "continue": soup.find("input", {"name": "continue"}).get("value")
-        }
-        result = session.post("https://www.google.com/sorry/index", data=payload)
-    if "knitsail" in result.text:
-        raise Exception("Failed to solve knitsail")
-    else:
-        print("possible done")
-        open("cookies.json", "w", encoding="utf_8").write(json.dumps([{"name": name, "value": value} for name, value in session.cookies.get_dict().items()]))
-        open("result.html", "w", encoding="utf_8").write(result.text)
+    result = session.get(f"https://www.google.com/search", params={"q": QUERY})
+    while True:
+        if "knitsail" in result.text:
+            soup = BeautifulSoup(result.text, "html.parser")
+            knitsail = soup.find_all("script")[2].get_text()
+            p = result.text.split("var p='")[1].split("'")[0]
+            eid = result.text.split("var eid='")[1].split("'")[0]
+            session.cookies.update({"SG_SS": sg_ss(knitsail, p, QUERY)})
+            result = session.get(f"https://www.google.com/search", params={"q": QUERY, "sei": eid}, headers={"referer": f"https://www.google.com/search?q={QUERY}"})
+        elif "captcha-form" in result.text:
+            soup = BeautifulSoup(result.text, "html.parser")
+            payload = {
+                "g-recaptcha-response": solve_captcha(soup.find("div", {"id": "recaptcha"}).get("data-sitekey"), soup.find("div", {"id": "recaptcha"}).get("data-s"), "; ".join([f"{name}={value}" for name, value in session.cookies.get_dict().items()])),
+                "q": soup.find("input", {"name": "q"}).get("value"),
+                "continue": soup.find("input", {"name": "continue"}).get("value")
+            }
+            result = session.post("https://www.google.com/sorry/index", data=payload)
+        else:
+            print("possible done")
+            open("cookies.json", "w", encoding="utf_8").write(json.dumps([{"name": name, "value": value} for name, value in session.cookies.get_dict().items()]))
+            open("result.html", "w", encoding="utf_8").write(result.text)
+            break
 
 if __name__ == "__main__":
     try:
