@@ -1,4 +1,8 @@
-Google updated something about SG_SS cookies. <br>
+> [!IMPORTANT]
+> Google pushed update again. requests must now match the ip, user-agent and cookies. \
+> Checked at Oct 14, 2025
+
+Google updated something about SG_SS cookies. <br
 After the update, the request ip should be matched with the cookie. <br>
 This repository will use this proxy. <br>
 Please agree the their terms and get proxy (use proxy2.****.jp) from their page. <br>
